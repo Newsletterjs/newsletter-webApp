@@ -1,0 +1,8 @@
+{{#if model.isSubescriber}}
+  <a href="#">Unsubscribe from this email list</a>
+{{else}}
+  {{#bs-form action="submit"}}
+    {{bs-form-element controlType="email" label="Email" placeholder="Email" value=email}}
+    {{bs-button defaultText="Subscribe" type="primary" buttonType="submit"}}
+  {{/bs-form}}
+{{/if}}

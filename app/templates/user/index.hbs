@@ -1,0 +1,13 @@
+<h1>{{model.user.displayName}} newsletters</h1>
+<table class="table newsletters">
+  {{#each model.newsletters as |newsletter|}}
+    <tr class="newsletter">
+      <td>
+        {{#link-to 'user.newsletter' newsletter}}
+          {{newsletter.name}}
+        {{/link-to}}
+      </td>
+      <td class="newsletter-actions">unsubscribe</td>
+    </tr>
+  {{/each}}
+</table>

@@ -7,6 +7,14 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('user', { path: ':username' }, function() {
+    this.route('newsletter', { path: ':id' }, function() {
+      this.route('unsubscribe');
+    });
+  });
+
+  this.route('login');
+  this.route('logout');
 });
 
 export default Router;

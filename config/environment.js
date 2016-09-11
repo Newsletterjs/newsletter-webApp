@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'web-app',
+    modulePrefix: 'newsletter-webApp',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
@@ -19,12 +19,38 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['ember-simple-auth'] = {
+    authenticationRoute: 'login',
+    routeAfterAuthentication: '/',
+    authorizer: 'authorizer:token'
+  };
+
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: ENV['API_HOST'] + '/auth/jwt/authenticate',
+    identificationField: 'email',
+    passwordField: 'password',
+    tokenPropertyName: 'token',
+    authorizationPrefix: 'JWT ',
+    authorizationHeaderName: 'Authorization',
+    headers: {},
+    refreshAccessTokens: false,
+    // serverTokenRefreshEndpoint: '/api/token-refresh/',
+    // tokenExpireName: 'exp',
+    refreshLeeway: 0,
+    timeFactor: 1000  // example - set to "1000" to convert incoming seconds to milliseconds.
+  };
+
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.API_HOST = 'http://localhost:4040';
+
+    ENV['ember-simple-auth-token'].serverTokenEndpoint = ENV['API_HOST'] + '/auth/jwt/authenticate';
   }
 
   if (environment === 'test') {
@@ -41,6 +67,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
 
   return ENV;
 };
