@@ -5,7 +5,7 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   actions: {
     authenticationSucceeded: function() {
-      this.transitionTo('desk');
+      this.transitionTo('/');
     }
   }
 });

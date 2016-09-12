@@ -3,11 +3,13 @@
   {{#each model.newsletters as |newsletter|}}
     <tr class="newsletter">
       <td>
-        {{#link-to 'user.newsletter' newsletter}}
+        {{#link-to 'user.newsletter' newsletter.id}}
           {{newsletter.name}}
         {{/link-to}}
       </td>
-      <td class="newsletter-actions">unsubscribe</td>
+      <td class="newsletter-actions">
+        {{subscription-btn newsletter=newsletter subscribe="subscribe" unSubscribe="unSubscribe"}}
+      </td>
     </tr>
   {{/each}}
 </table>
