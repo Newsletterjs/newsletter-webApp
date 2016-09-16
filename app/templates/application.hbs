@@ -1,8 +1,4 @@
-{{#if session.isAuthenticated}}
-  <button type="button" {{action 'invalidateSession'}}>Logout</button>
-{{else}}
-  {{#link-to 'login'}}Login{{/link-to}}
-{{/if}}
+{{auth-login-btn}}
 
 <div class="container">
 {{outlet}}

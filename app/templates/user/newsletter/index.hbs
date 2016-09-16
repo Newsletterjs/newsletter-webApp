@@ -5,16 +5,3 @@
   modelId=model.record.id
   isSubscribed=model.record.isSubscribed
 }}
-{{!--
-{{#if model.subscription.id}}
-  {{#bs-form action="unSubscribe"}}
-    {{bs-button defaultText="Unsubscribe" type="default" buttonType="submit"}}
-    {{input name="newsletterId" type="hidden" value=model.record.id}}
-  {{/bs-form}}
-{{else}}
-  {{#bs-form action="subscribe"}}
-    {{bs-button defaultText="Subscribe" type="primary" buttonType="submit"}}
-    {{input name="newsletterId" type="hidden" value=model.record.id}}
-  {{/bs-form}}
-{{/if}}
- --}}

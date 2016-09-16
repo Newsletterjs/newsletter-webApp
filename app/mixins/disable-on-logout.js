@@ -3,10 +3,10 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   session: Ember.inject.service('session'),
 
-  disabled: false,
+  disabled: true,
 
-  listen: function() {
-    if (this.get('session.isAuthenticated')) {
+  setWatchersOnInitDL: function() {
+    if (this.get('session').get('isAuthenticated')) {
       this.set('disabled', false);
     }
 
@@ -14,7 +14,7 @@ export default Ember.Mixin.create({
     this.get('session').on('invalidationSucceeded', this, 'disableComponent');
   }.on('init'),
 
-  cleanup: function() {
+  cleanupWatchersOnDestroyDL: function() {
     this.get('session').off('authenticationSucceeded', this, 'enableComponent');
     this.get('session').off('invalidationSucceeded', this, 'disableComponent');
   }.on('willDestroyElement'),

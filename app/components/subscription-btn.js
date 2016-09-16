@@ -10,7 +10,7 @@ export default Ember.Component.extend(disableOnLogout, {
 
   listen: function() {
     if (this.get('session.isAuthenticated')) {
-      this.set('disabled', false);
+      this.set('disabled', true);
     }
 
     let id = this.get('modelId');
