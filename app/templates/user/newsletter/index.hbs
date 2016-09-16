@@ -1,5 +1,11 @@
 <h1>{{model.record.name}}</h1>
 <p>{{{model.record.description}}}</p>
+
+{{subscription-btn
+  modelId=model.record.id
+  isSubscribed=model.record.isSubscribed
+}}
+{{!--
 {{#if model.subscription.id}}
   {{#bs-form action="unSubscribe"}}
     {{bs-button defaultText="Unsubscribe" type="default" buttonType="submit"}}
@@ -11,3 +17,4 @@
     {{input name="newsletterId" type="hidden" value=model.record.id}}
   {{/bs-form}}
 {{/if}}
+ --}}

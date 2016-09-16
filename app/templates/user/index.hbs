@@ -8,7 +8,10 @@
         {{/link-to}}
       </td>
       <td class="newsletter-actions">
-        {{subscription-btn newsletter=newsletter subscribe="subscribe" unSubscribe="unSubscribe"}}
+        {{subscription-btn
+          modelId=newsletter.id
+          isSubscribed=newsletter.isSubscribed
+        }}
       </td>
     </tr>
   {{/each}}
