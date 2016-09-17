@@ -27,8 +27,6 @@ export default DS.Model.extend({
 
     let subs = this.get('store').peekAll('newsletterSubscribers');
 
-    console.log('<<<<,sub', subs, subs.get('length'));
-
     for (let i = 0; i < subs.get('length'); i++) {
       let sub = subs.objectAt(i);
 
@@ -52,8 +50,6 @@ export default DS.Model.extend({
     }
 
     let subs = this.get('store').peekAll('newsletterSubscribers');
-
-    console.log('<<<<,sub', subs, subs.get('length'));
 
     for (let i = 0; i < subs.get('length'); i++) {
       let sub = subs.objectAt(i);
