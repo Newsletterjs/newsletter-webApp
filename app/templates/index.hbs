@@ -1,9 +1,26 @@
-<h1>My newsletters:</h1>
+<h1>My subscriptions</h1>
 
-{{
-  models-table
-  data=model.myNewsletters
-  columns=columns
-  view='viewRecord'
-  unSubscribe='unSubscribe'
-}}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.mySubscriptions as |subs|}}
+      <tr>
+        <td>{{subs.newsletter.name}}</td>
+        <td>
+          {{#link-to 'user.newsletter' subs.newsletter.creator.username subs.newsletter.id class="btn btn-default"}}
+            View
+          {{/link-to}}
+          {{subscription-btn
+            modelId=subs.newsletter.id
+            isSubscribed=subs.newsletter.isSubscribed
+          }}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

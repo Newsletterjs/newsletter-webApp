@@ -1,11 +1,5 @@
 {{#if isSubscribed}}
-  {{#bs-form action="unSubscribe"}}
-    {{bs-button defaultText="Unsubscribe" type="default" buttonType="submit" disabled=disabled}}
-    {{input name="newsletterId" type="hidden" value=subscription.id}}
-  {{/bs-form}}
+  <button class="btn btn-default" type="button" {{action "unSubscribe"}}>Unsubscribe</button>
 {{else}}
-  {{#bs-form action="subscribe"}}
-    {{bs-button defaultText="Subscribe" type="primary" buttonType="submit" disabled=disabled}}
-    {{input name="newsletterId" type="hidden" value=subscription.id}}
-  {{/bs-form}}
+  <button class="btn btn-default" type="button" {{action "subscribe"}}>Subscribe</button>
 {{/if}}

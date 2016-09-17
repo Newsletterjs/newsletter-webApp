@@ -6,6 +6,8 @@ export default Ember.Component.extend(disableOnLogout, {
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
 
+  linkClass: 'btn btn-default',
+
   actions: {
     invalidateSession: function() {
       this.get('session').invalidate();
@@ -13,7 +15,8 @@ export default Ember.Component.extend(disableOnLogout, {
       router.transitionTo('login');
     },
     goToLogin: function() {
-      this.transitionTo('login');
+      let router = this.get('routing');
+      router.transitionTo('login');
     }
   }
 });

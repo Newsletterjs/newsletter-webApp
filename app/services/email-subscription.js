@@ -75,10 +75,9 @@ export default Ember.Service.extend(Ember.Evented, {
     })
     .then( (output)=> {
       let newsletter = this.get('store').peekRecord('newsletter', id);
-      let sub = newsletter.get('isSubscribed');
+      let sub = newsletter.get('getSubscription');
 
       this.trigger(`email_unSubscribed_${id}`);
-      window.teste = sub;
       // remove from store after delete
       if (sub && sub.unloadRecord) {
         sub.unloadRecord();

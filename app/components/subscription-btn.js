@@ -1,10 +1,19 @@
 import Ember from 'ember';
 import disableOnLogout from '../mixins/disable-on-logout';
 
+/**
+ *
+ *  Example:
+    {{subscription-btn
+      modelId=newsletter.id
+      isSubscribed=newsletter.isSubscribed
+    }}
+ */
 export default Ember.Component.extend(disableOnLogout, {
   emailSubscription: Ember.inject.service('email-subscription'),
   id: null,
   isSubscribed: false,
+  tagName: 'span',
 
   // event watchers:
 

@@ -3,8 +3,7 @@ import ENV from "../config/environment";
 
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
-
-  model (params) {
+  beforeModel () {
     let token = this.get('session.data.authenticated.token');
 
     if (!token) {
@@ -12,17 +11,8 @@ export default Ember.Route.extend({
     }
 
     return Ember.RSVP.hash({
-      user: this.store.query('user', {
-        username: params.username
-      })
-      .then( (r)=> {
-        if (r.content[0] && r.content[0].id) {
-          return this.store.peekRecord('user', r.content[0].id);
-        } else {
-          return null;
-        }
-      }),
-      newsletterSubscribers: Ember.$.ajax({
+      // preload current user subscriptions:
+      loadSubs: Ember.$.ajax({
         url: ENV.API_HOST + '/all-subscriptions',
         headers: {
           Accept: 'application/vnd.api+json',
@@ -32,6 +22,11 @@ export default Ember.Route.extend({
       .then( (output)=> {
         return this.store.push(output);
       })
+    });
+  },
+  model () {
+    return Ember.RSVP.hash({
+      mySubscriptions: this.get('store').peekAll('newsletter-subscribers')
     });
   }
 });

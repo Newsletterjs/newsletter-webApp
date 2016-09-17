@@ -1,10 +1,10 @@
 {{#if disabled}}
-  {{#link-to 'login' class="btn btn-default"}}
+  {{#link-to 'login' class=linkClass}}
     <span class="glyphicon glyphicon-log-in"></span>
     Login
   {{/link-to}}
 {{else}}
-  <button type="button" class="btn btn-default" {{action 'invalidateSession'}}>
+  <button type="button" {{action 'invalidateSession'}} class="{{linkClass}}">
     <span class="glyphicon glyphicon-log-out"></span>
     Logout
   </button>
