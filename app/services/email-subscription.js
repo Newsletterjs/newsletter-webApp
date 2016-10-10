@@ -20,7 +20,7 @@ export default Ember.Service.extend(Ember.Evented, {
       throw new Error('newsletter param is required in email subscription service');
     }
 
-    let token = this.get('session.data.authenticated.token');
+    let token = this.get('session.session.content.authenticated.access_token');
 
     if (!token) {
       // skip if not authenticated
@@ -34,7 +34,7 @@ export default Ember.Service.extend(Ember.Evented, {
       type: 'post',
       headers: {
         Accept: 'application/vnd.api+json',
-        Authorization: 'JWT '+token
+        Authorization: 'Basic '+token
       }
     })
     .then( (output)=> {
@@ -56,7 +56,7 @@ export default Ember.Service.extend(Ember.Evented, {
       throw new Error('newsletter id param is required in email subscribe service');
     }
 
-    const token = this.get('session.data.authenticated.token');
+    const token = this.get('session.session.content.authenticated.access_token');
 
     if (!token) {
       // skip if not authenticated
@@ -70,7 +70,7 @@ export default Ember.Service.extend(Ember.Evented, {
       type: 'post',
       headers: {
         Accept: 'application/vnd.api+json',
-        Authorization: 'JWT '+token
+        Authorization: 'Basic '+token
       }
     })
     .then( (output)=> {

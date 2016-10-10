@@ -1,10 +1,12 @@
 import Ember from 'ember';
 import ENV from "../config/environment";
 
-export default Ember.Route.extend({
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+
+export default Ember.Route.extend(ApplicationRouteMixin, {
   session: Ember.inject.service('session'),
   beforeModel () {
-    let token = this.get('session.data.authenticated.token');
+    let token = this.get('session.session.content.authenticated.access_token');
 
     if (!token) {
       return {};
@@ -16,7 +18,7 @@ export default Ember.Route.extend({
         url: ENV.API_HOST + '/all-subscriptions',
         headers: {
           Accept: 'application/vnd.api+json',
-          Authorization: 'JWT '+token
+          Authorization: 'Basic '+token
         }
       })
       .then( (output)=> {

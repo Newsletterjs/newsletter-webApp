@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
 
   model (params) {
-    let userId = this.get('session.data.authenticated.user.id');
+    let userId = this.get('session.session.content.authenticated.user.id');
 
     return Ember.RSVP.hash({
       record: this.get('store').findRecord('newsletter', params.id),

@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
+    API_HOST: '',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -20,26 +21,13 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth'] = {
-    authenticationRoute: 'login',
-    routeAfterAuthentication: '/',
-    authorizer: 'authorizer:token'
-  };
-
-  ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: ENV['API_HOST'] + '/auth/jwt/authenticate',
     identificationField: 'email',
     passwordField: 'password',
-    tokenPropertyName: 'token',
-    authorizationPrefix: 'JWT ',
-    authorizationHeaderName: 'Authorization',
-    headers: {},
-    refreshAccessTokens: false,
-    // serverTokenRefreshEndpoint: '/api/token-refresh/',
-    // tokenExpireName: 'exp',
-    refreshLeeway: 0,
-    timeFactor: 1000  // example - set to "1000" to convert incoming seconds to milliseconds.
+    authenticationRoute: 'login',
+    routeAfterAuthentication: 'index',
+    routeIfAlreadyAuthenticated: 'index',
+    serverTokenEndpoint: '/auth/grant-password/authenticate'
   };
-
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -50,7 +38,7 @@ module.exports = function(environment) {
 
     ENV.API_HOST = 'http://localhost:4040';
 
-    ENV['ember-simple-auth-token'].serverTokenEndpoint = ENV['API_HOST'] + '/auth/jwt/authenticate';
+    ENV['ember-simple-auth'].serverTokenEndpoint = ENV['API_HOST'] + ENV['ember-simple-auth'].serverTokenEndpoint;
   }
 
   if (environment === 'test') {
@@ -67,7 +55,6 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
-
 
   return ENV;
 };
